@@ -1,3 +1,15 @@
+/*
+
+B.Wolfe | V00205547
+SENG 265 - Assignment 1
+
+Description: This program is phase 1 of a text compression scheme.  The Program
+performs the transformation forwards and backwards in word sizes up to 20
+characters.  The program adjusts depending on the compression scheme used and
+implements a number of error checks to maximize robustness.
+
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
