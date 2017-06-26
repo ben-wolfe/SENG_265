@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
 
+"""
+B.Wolfe | V00205547
+SENG 265 - Assignment 2
+
+Description: This program is phase 2 of a text compression scheme.  The program
+transforms blocks of text forwards and backwards using any user specified block 
+size.  Adhering to proper Python practice, only list comprehensions are used 
+instead of for loops.  The program checks for the correct .ph1 file format and 
+implements command line argument checking on top of the default argparse error 
+checking to ensure correct program usage.
+"""
+
 import sys
 import argparse
 import struct
@@ -8,37 +20,27 @@ def compress_text(infile, outfile, block):
 	# Call a separate function to write file detail bytes
 	write_key_bytes(outfile, block)
 
-	word_list = []
 	# Attempt to open 'infile'; exit gracefully if opening is unccessful
 	try:
 		with open(infile, 'r') as input_fp:
-			while True:
-				# Read the file block by block
-				text_buffer = input_fp.read(block)
-				
-				# Exit the loop when there is nothing left to read
-				if not text_buffer:
-					break
-			
+			# Read the file block by block while there is something to read
+			text_buffer = input_fp.read(block)
+			while text_buffer:
 				buffer_mod = text_buffer + '\x03'
 
 				# Store word rotations in a list
-				for x in range(len(buffer_mod)):
-					word_list.append(buffer_mod[x:]+buffer_mod[:x])
+				word_list = [buffer_mod[x:]+buffer_mod[:x] for x in range(len(buffer_mod))]
 			
-				# Sort the list; obtiain last character from each word; join
-				# the characters to create the compressed word
+				# Sort list; extract last character from each word; join to create the compressed word
 				word_list.sort()
-				new_word = [word[-1] for word in word_list]
-				new_word = "".join(new_word)
-
-				# Write the compressed word to output file
+				new_word = "".join([word[-1] for word in word_list])
+				
+				# Append the compressed word to output file
 				with open(outfile, 'a', encoding='latin-1') as output_fp:
 					output_fp.write(new_word)
 
-				# Clear the word list for next transformation
-				del word_list[:]
-	
+				# Read in the next stream of text
+				text_buffer = input_fp.read(block)	
 	except IOError:
 		print('\nFILE ERROR\nUnable to open %s\n' % infile)
 
@@ -57,54 +59,39 @@ def write_key_bytes(outfile, blocksize):
 
 def uncompress_text(infile, outfile):
 	blocksize = read_key_bytes(infile)
-	original = []
 	try:
 		with open(infile, 'r') as input_fp:
 			# Start reading the file after the file detail bytes
 			input_fp.seek(8)
 
-			# Clear the contents of the output file (preventative measure if 
-			# the current file exists
+			# Clear the contents of the output file (preventative measure if the file already exists)
 			with open(outfile, 'w', encoding='latin-1') as output_fp:
 				output_fp.write("")
-
-			while True:
-				# Read the next text stream 'blocksize+1' characters at a time
-				# Note: the +1 is to account for the '\x03' symbol
-				text_buffer = input_fp.read(blocksize+1)
-
-				# Exit the loop if there is nothing left to read
-				if not text_buffer:
-					break;
+				
+			# Read the text 'blocksize+1' characters at a time to account for the '\x03' symbol
+			original = list(input_fp.read(blocksize+1))
+			while original:
 	
-				# Clear the last text buffer and update with new contents
-				del original[:]
-				original = list(text_buffer)
-
-				# Outer loop for the number of transfers from original
-				# list to the temporary list
-				for loop in range(len(original)-1):
-					# Copy the contents of the original list to a temporary
-					# list; sort the temporary list
+				transfer_counter = 0
+				while transfer_counter < (len(original)-1):
+					# Copy the contents of the original list to a temporary and sort
 					temporary = list(original)
 					temporary.sort()
 
-					# Add the last char of each elemet in the temporary list
-					# back to the original list
-					for item in range(len(original)):
-						original[item] += temporary[item][-1]
+					# Add last char of each element in the temp list to original list
+					original = [original[x]+temporary[x][-1] for x in range(len(original))]
+					transfer_counter += 1
 
 				# Search for EOT symbol and retrieve corresponding word
-				for key_word in range(len(original)):
-					if original[key_word][-1] == '\x03':
-						uncomp_string = original[key_word]
-						uncomp_string = uncomp_string[:-1]
-						break
+				uncomp_string = [original[x][:-1] for x in range(len(original)) if original[x][-1] == '\x03']
 
 				# Append the contents to outfile
 				with open(outfile, 'a', encoding='latin-1') as output_fp:
-					output_fp.write(uncomp_string)
+					output_fp.write(uncomp_string[0])
 
+				# Update the text buffer
+				original = list(input_fp.read(blocksize+1))
+				
 	except IOError:
 		print('\nFILE ERROR\nUnable to open %s\n' % infile)
 		return
@@ -135,28 +122,19 @@ def read_command_line():
 	parser = argparse.ArgumentParser(description='A program for text compression and extraction.')
 
 	# Specify mutually exclusive arguments
-	direction = parser.add_mutually_exclusive_group()
+	direction = parser.add_mutually_exclusive_group(required=True)
 	direction.add_argument('--forward', action='store_true', help='specify for compression')
 	direction.add_argument('--backward', action='store_true', help='specify for extraction')
 
 	# Specify additional arguments
-	parser.add_argument('--infile', type=str, help='input text file')
-	parser.add_argument('--outfile', type=str, help='stores program output')
+	parser.add_argument('--infile', type=str, help='input text file', required=True)
+	parser.add_argument('--outfile', type=str, help='stores program output', required=True)
 	parser.add_argument('--blocksize', type=int, help='for use with forward transform; number of characters per compression block')
 	
-	# Parse the arguments
+	# Parse and check the arguments
 	args = parser.parse_args()
+	check_arguments(args.infile, args.outfile, args.blocksize, args.forward, args.backward)
 	
-	# Check for valid program usage
-	if args.infile == None or args.outfile == None:
-		display_usage()
-		return
-
-	# Check that a block size is specified in the forward direction
-	if args.forward and args.blocksize == None:
-		display_usage()
-		return
-
 	# Use transformation direction to select program mode 
 	if args.forward:
 		compress_text(args.infile, args.outfile, args.blocksize)
@@ -167,13 +145,22 @@ def read_command_line():
 		return
 	
 	else:
-		display_usage()
-		return
+		sys.exit()
 
-def display_usage():
-	print('\nINPUT ERROR - Correct program usage:')
-	print('Forward transform: ./phase1.py --foward --infile <file.txt> --outfile <file.ph1> --blocksize #')
-	print('Backward transform: ./phase1.py --backward --infile <file.ph1> --outfile <file.txt>\n')
+def check_arguments(infile, outfile, blocksize, forward, backward):
+
+	if forward and (infile[-4:] != '.txt'):
+		print("\nINPUT ERROR\nInput file must be of type '.txt' to perform the forward transform\n")
+		sys.exit()
+
+	if backward and (infile[-4:] != '.ph1'):
+		print("\nINPUT ERROR\nInput file must of type '.ph1' to perform the backward transform\n")
+		sys.exit()
+
+	# Check that a block size is specified in the forward direction
+	if forward and blocksize == None:
+		print("\nINPUT ERROR\nInclude a block size to use in the forward transform: '--blocksize <#>'\n")
+		sys.exit()
 
 def main():
 	read_command_line()
