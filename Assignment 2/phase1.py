@@ -74,7 +74,7 @@ def uncompress_text(infile, outfile):
 	
 				transfer_counter = 0
 				while transfer_counter < (len(original)-1):
-					# Copy the contents of the original list to a temporary and sort
+					# Copy the contents of the original list to a temporary list and sort
 					temporary = list(original)
 					temporary.sort()
 
