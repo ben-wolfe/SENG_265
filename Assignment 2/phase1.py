@@ -6,10 +6,10 @@ SENG 265 - Assignment 2
 
 Description: This program is phase 2 of a text compression scheme.  The program
 transforms blocks of text forwards and backwards using any user specified block 
-size.  Adhering to proper Python practice, only list comprehensions are used 
-instead of for loops.  The program checks for the correct .ph1 file format and 
-implements command line argument checking on top of the default argparse error 
-checking to ensure correct program usage.
+size.  Adhering to good Python practice, list comprehensions are used instead of 
+for loops.  The program checks for the correct .ph1 file format and implements 
+command line argument checking on top of the default argparse error checking to 
+ensure correct program usage.
 """
 
 import sys
