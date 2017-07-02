@@ -4,12 +4,16 @@
 B.Wolfe | V00205547
 SENG 265 - Assignment 2
 
-Description: This program is phase 2 of a text compression scheme.  The program
+DESCRIPTION: 
+This program is phase 2 of a text compression scheme.  The program
 transforms blocks of text forwards and backwards using any user specified block 
 size.  Adhering to good Python practice, list comprehensions are used instead of 
 for loops.  The program checks for the correct .ph1 file format and implements 
 command line argument checking on top of the default argparse error checking to 
 ensure correct program usage.
+
+DATE:
+27.06.2017
 """
 
 import sys
@@ -166,4 +170,4 @@ def main():
 	read_command_line()
 
 if __name__ == '__main__':
-		  main()
+	main()
