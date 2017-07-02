@@ -8,6 +8,9 @@ performs the transformation forwards and backwards in word sizes up to 20
 characters.  The program adjusts depending on the compression scheme used and
 implements a number of error checks to maximize robustness.
 
+DATE:
+07.06.2017
+
 */
 
 #include <stdio.h>
