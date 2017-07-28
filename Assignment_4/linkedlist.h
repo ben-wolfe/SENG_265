@@ -4,8 +4,8 @@
 	DESC:
 	Header file for a doubly-linked list.
 
-	DATE:
-	26.07.2017
+	LAST MODIFED:
+	28.07.2017
 */
 
 

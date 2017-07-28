@@ -4,8 +4,8 @@
 	DESC:
 	This program defines the methods to use alongside a doubly-linked list.
 
-	DATE:
-	25.07.2017
+	LAST MODIFIED:
+	28.07.2017
 */
 
 

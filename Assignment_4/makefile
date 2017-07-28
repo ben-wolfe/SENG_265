@@ -1,4 +1,10 @@
+# Ben Wolfe | V00205547
+#
+# DESC:
 # Makefile to to implement phase2.c
+#
+# LAST MODIFIED:
+# 28.07.2017 
 
 CC=gcc
 CFLAGS=-c -Wall -g -ansi -DDEBUG

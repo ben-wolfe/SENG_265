@@ -2,12 +2,12 @@
 	Ben Wolfe | V00205547
 
 	DESC:
-	This program reads performs text compression and extraction from .ph1 files to
+	This program reads and performs text compression and extraction from .ph1 files to
 	.ph2 files and vice versa.  The program makes use of dynamic memory allocation
 	and doubly linked lists to perform the transformation.
 
-	DATE:
-	26.07.2017
+	LAST MODIFIED:
+	28.07.2017
 */
 
 #include <stdio.h>
@@ -78,6 +78,11 @@ int main(int argc, char *argv[]) {
 	fclose(input_file); 
 	
 	output_file = fopen(output_name, "w");
+	if(output_file == NULL){
+		fprintf(stderr, "\nFILE ERROR\nUnable to open file: %s\n\n", output_name);
+		exit(1);
+	}
+
 	write_info_bytes(blocksize);
 
 	if(mode == ENCODE){
@@ -113,7 +118,7 @@ int process_command_line(int argc, char **argv){
 		if(strcmp(argv[arg], "--decode") == 0) mode = DECODE;
 
 		if(strcmp(argv[arg], "--infile") == 0){
-			if(arg != arg-1) input_name = argv[arg+1];
+			if(arg != argc-1) input_name = argv[arg+1];
 			else show_usage();
 		}
 
@@ -288,13 +293,13 @@ int in_list(charval_t *list, unsigned char character){
 
 int get_index(charval_t *list, unsigned char character){
 /* Returns the position of a specific character in the list
-	and 0 if the character is not in the list */
+	and -1 if the character is not in the list */
 
 	int index;
 	for(index = 0; list != NULL; list = list->next, index++){
 		if(list->c == character) return index;
 	}
-	return 0;
+	return -1;
 }
 
 /* ----------------------------------------------------------------------- ENCODE */
@@ -303,7 +308,7 @@ void encode(unsigned char *buffer){
 	encoding followed by run-length encoding.  A modified
 	ascii scheme is used to represent numbers */
 
-	/* Lists used for the transofmration */
+	/* Lists used for the transformation*/
 	charval_t *lookup_list, *lookup_tail; 
 	charval_t *mtf_encoding, *mtf_tail;
 	charval_t *rl_encoding, *rl_tail;
@@ -556,11 +561,12 @@ void decode_mtf(charval_t *rl_decoding, \
 
 	while(rl_decoding != NULL){
 
-		/* If a character immediately follows a digit, it means its not
+		/* If a character immediately follows a digit, it means it's not
 			already in the look up list, therefore, need to add to
 			look up list */
 		if((rl_decoding->flag == 1) && (rl_decoding->next != NULL)){
-			
+		
+			/* Case when the next character is a letter, not a digit */
 			if(rl_decoding->next->flag != 1){
 
 				lookup_char = new_charval(rl_decoding->next->c, NOT_DIGIT);
@@ -605,6 +611,7 @@ void decode_mtf(charval_t *rl_decoding, \
 
 		rl_decoding = rl_decoding->next;
 	}
-	
+
+	/* Free the memory allocated for the lookup list */
 	delete_list(lookup_list, &lookup_tail);
 }
