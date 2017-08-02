@@ -1,9 +1,9 @@
 # UNIX Lecture Notes
 
-[What is UNIX?](##What-is-UNIX?)<br>
-[Why use UNIX?](##Why-use-UNIX?)<br>
-[The UNIX Model](##The-UNIX-Model)<br>
-[The UNIX Filesystem](##The-UNIX-Filesystem)<br>
+[What is UNIX?](##what-is-unix?)<br>
+[Why use UNIX?](##why-use-unix?)<br>
+[The UNIX Model](##the-unix-model)<br>
+[The UNIX Filesystem](##the-unix-filesystem)<br>
 [A heading](#a-heading)<br>
 
 ## What is UNIX?
