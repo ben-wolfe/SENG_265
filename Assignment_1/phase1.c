@@ -19,7 +19,7 @@ DATE:
 
 #define BUFFER 22 /* String arrays should hold 20 characters.  Include +1
                     for the end of text character and +1 for the NULL character */
-#define NAME_MAX 61
+#define NAME_MAX 200
 #define INFO_BYTES 8
 #define FORWARD 1
 #define BACKWARD 2
