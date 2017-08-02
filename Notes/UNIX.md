@@ -1,5 +1,10 @@
 # UNIX Lecture Notes
 
+[What is UNIX?](##What is UNIX?)
+[The UNIX Model](##The UNIX Model)
+[The UNIX Filesystem](##The UNIX Filesystem)
+[Directories](###Directories)
+
 ## What is UNIX?
 UNIX is a **multi-user, multi-tasking** and **machine-independent** operating system.  There are many flavours of UNIX in use today including Mac OS X.
 
@@ -14,7 +19,7 @@ UNIX is a **multi-user, multi-tasking** and **machine-independent** operating sy
 
 ## The UNIX Model
 ![Image of the UNIX Model](./Images/UNIX_model.png)
-The **shell** acts as an interpreter, or bridge, between the user and the kernel and has responsibilities including:
+The **shell** acts as an interpreter, or bridge, between the user and the kernel.  Its responsibilities include 
 * Reading and interpreting user commands at the console
 * Implementing job control
 
@@ -29,22 +34,21 @@ The kernel's main resposibilities are:
 * Communicating with devices, etc.
 
 ## The UNIX Filesystem
-*File* and *filesystem* are **key abstractions** of the UNIX computing model.  Practically anything can be abstracted as a file including devices, programs, data, memory, etc.  In summary, the filesystem creates the relationship between *abstracting blocks* of information on the **physical** storage device and **locical** blocks that the user can manipulate.
+*File* and *filesystem* are **key abstractions** of the UNIX computing model.  Practically anything can be abstracted as a file including devices, programs, data, memory, etc.  In summary, the filesystem creates the relationship between *abstracting blocks* of information on the **physical** storage device and **logical** blocks that the user can manipulate.
 
-The file system is arranged as a hierachy of a collection of **directories**.  Note that a directory can be thought of as a folder.  Directories are, however, just normal files.  The only difference is that they have a special format.
 
-To access the parent of a directory, use:
-```shell
-..
-```
-
-To access the current directory (i.e. the **working directory**), use:
-```shell
-.
-```
+### Directories
+The file system is arranged as a hierachy of a collection of **directories**.  A directory can be thought of as a folder, however is just a normal file.  The only difference is that they have a special format.  Every directory contains two special directory entries. **.** and **..** refer to the current directory and parent directory respectively.
 
 Note that
 ```shell
 ~
 ``` 
-is used to access the **home directory**.  Note that the home directory is usually made to be the working directory upon logging into the system.
+is used to access the **home directory** (the home directory is usually made to be the working directory upon logging into the system).  In other words,
+```shell
+cd /home/user
+```
+is equivalent to
+```shell
+~user
+```
