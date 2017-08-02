@@ -1,5 +1,5 @@
-# SENG 265
-A repository to hold work for my SENG 265, Software Development Methods, class.
+# SENG 265 - Software Development Methods
+This repository contains the four assignments that were completed for this class as well as my lecture notes.
 
 ## Assignment Descriptions
 * Assignment 1 - Burrows-Wheeler Transform (C)
