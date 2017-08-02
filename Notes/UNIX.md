@@ -4,7 +4,6 @@
 [Why use UNIX?](#why-use-unix)<br>
 [The UNIX Model](#the-unix-model)<br>
 [The UNIX Filesystem](#the-unix-filesystem)<br>
-[A heading](#a-heading)<br>
 
 ## What is UNIX?
 UNIX is a **multi-user, multi-tasking** and **machine-independent** operating system.  There are many flavours of UNIX in use today including Mac OS X.
@@ -53,4 +52,3 @@ is equivalent to
 ```shell
 ~user
 ```
-## A heading
