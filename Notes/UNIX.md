@@ -13,8 +13,7 @@ UNIX is a **multi-user, multi-tasking** and **machine-indepenent** operating sys
 * Large user community
 
 ## The UNIX Model
-Highest level: User <br>
-Lowest level: UNIX Kernel and Device Drivers <br>
+![Image of the UNIX Model](/Images/UNIX_model.png)
 The **shell** acts as an interpreter, or bridge, between the user and the kernel and has responsibilities including:
 * Reading and interpreting user commands at the console
 * Implementing job control
