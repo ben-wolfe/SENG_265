@@ -7,9 +7,9 @@ then specify the follow arguments at the command line:
 
 For a forward transformation: <br>
 ```shell
-./phase1 --infile <input_name.ph1> --outfile <output_name.ph2> --encode
+./phase2 --infile <input_name.ph1> --outfile <output_name.ph2> --encode
 ```
 For a backward transformation: <br>
 ```shell
-./phase --infile <input_name.ph2> --outfile <output_name.ph1> --decode
+./phase2 --infile <input_name.ph2> --outfile <output_name.ph1> --decode
 ```
