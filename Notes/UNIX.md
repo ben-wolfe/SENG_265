@@ -1,7 +1,9 @@
 # UNIX Lecture Notes
 
-[create an anchor](#some-markdown-heading)
-
+[What is UNIX?](##What-is-UNIX?)
+[Why use UNIX?](##Why-use-UNIX?)
+[The UNIX Model](##The-UNIX-Model)
+[The UNIX Filesystem](##The-UNIX-Filesystem)
 
 ## What is UNIX?
 UNIX is a **multi-user, multi-tasking** and **machine-independent** operating system.  There are many flavours of UNIX in use today including Mac OS X.
