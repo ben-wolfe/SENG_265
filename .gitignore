@@ -47,9 +47,3 @@ Thumbs.db
 *.jpg
 *.png
 *.gif
-
-# Testing files #
-#################
-*.txt
-*.ph1
-*.ph2
