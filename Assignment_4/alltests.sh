@@ -2,8 +2,8 @@
 
 # set -x
 
-ZASTRE_DIR=/home/zastre/seng265/tests
-BEN_DIR=/home/wolfeben/SENG_265/mygit/a4/my_tests
+ZASTRE_DIR=~/OneDrive/GitHub/SENG_265/Assignment_4/Zastre_Tests
+BEN_DIR=~/OneDrive/GitHub/SENG_265/Assignment_4/my_tests
 IN_PREFIX="t"
 IN_SUFFIX="ph1"
 OUT_PREFIX="t"
