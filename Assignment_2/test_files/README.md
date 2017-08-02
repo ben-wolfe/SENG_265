@@ -1,1 +1,1 @@
-A directory to hold tests generated.
+A directory to store generated tests cases
