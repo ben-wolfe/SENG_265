@@ -1,7 +1,7 @@
 ### Running the Program
 To run the program, compile using 
 ```shell
-gcc phase1.c -o phase1 
+make
 ```
 then specify the follow arguments at the command line:
 
