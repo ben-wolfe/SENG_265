@@ -15,4 +15,7 @@ For a backward transformation: <br>
 ```
 **OR**
 
-To automate all tests, after compiling, run './alltests.sh'
+To automate all tests, after compiling, run 
+```shell
+./alltests.sh
+```
