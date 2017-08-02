@@ -1,6 +1,6 @@
 # UNIX Lecture Notes
 
-[This is the link text](#name)
+(#some-markdown-heading)
 
 ## What is UNIX?
 UNIX is a **multi-user, multi-tasking** and **machine-independent** operating system.  There are many flavours of UNIX in use today including Mac OS X.
@@ -50,4 +50,4 @@ is equivalent to
 ~user
 ```
 
-## HEADING<a name="name"></a>
+[create an anchor](#anchors-in-markdown)
