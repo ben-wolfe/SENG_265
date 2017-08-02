@@ -8,7 +8,7 @@
 * Modified the makefile to compile both programs
 
 ## Running the Program
-* In EXTRA WORK folder (this folder), run
+* In *extra* folder (this folder), run
 ```shell
 make
 ```
