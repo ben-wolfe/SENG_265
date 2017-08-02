@@ -14,6 +14,6 @@ make
 ```
 * Run 
 ```shell
-all alltests.sh
+./alltests.sh
 ```
 * Observe how slow the singly linked implementation is in comparison (The 'add_end' method has O(n) time complexity in the singly-linked implementation vs O(1) time complexity in the doubly-linked implementation.
