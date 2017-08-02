@@ -1,9 +1,10 @@
 # UNIX Lecture Notes
 
-[What is UNIX?](##What-is-UNIX?)
-[Why use UNIX?](##Why-use-UNIX?)
-[The UNIX Model](##The-UNIX-Model)
-[The UNIX Filesystem](##The-UNIX-Filesystem)
+[What is UNIX?](##What-is-UNIX?)<br>
+[Why use UNIX?](##Why-use-UNIX?)<br>
+[The UNIX Model](##The-UNIX-Model)<br>
+[The UNIX Filesystem](##The-UNIX-Filesystem)<br>
+[A heading](#A-heading)<br>
 
 ## What is UNIX?
 UNIX is a **multi-user, multi-tasking** and **machine-independent** operating system.  There are many flavours of UNIX in use today including Mac OS X.
@@ -52,5 +53,4 @@ is equivalent to
 ```shell
 ~user
 ```
-
-# some markdown heading
+# A heading
