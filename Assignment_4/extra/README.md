@@ -1,4 +1,4 @@
-## Work Beyond Assignment Description
+## Extra Work
 * Implemented the assignment using both singly and doubly linked lists
 * Added timing functionality for comparisons sake
 * The doubly linked list is a true doubly linked list implementation with next/previous pointers 
