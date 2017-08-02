@@ -1,5 +1,5 @@
 # SENG 265 - Software Development Methods
-This repository contains four assignments that were completed for my Software Development Methods class as well as my lecture notes.
+This repository contains four assignments that were completed for my Software Development Methods.
 
 ## Assignment Descriptions
 * Assignment 1 - Burrows-Wheeler Transform (C)
