@@ -1,4 +1,4 @@
-### Runnin the Program
+### Running the Program
 To run the program, compile using 
 ```shell
 gcc phase1.c -o phase1 
@@ -13,6 +13,6 @@ For a backward transformation: <br>
 ```shell
 ./phase --infile <input_name.ph1> --outfile <output_name.txt> --backward
 ```
-OR
+**OR**
 
 To automate all tests, after compiling, run './alltests.sh'
